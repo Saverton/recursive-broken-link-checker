@@ -1,0 +1,4 @@
+- Handle hrefs with HTML encoded characters, like &amp;
+- Find a faster way to ping for status codes on sites not intended to crawl.
+- Differentiate between a request timeout and a request failure
+- Send multiple URLs that should be crawled, specifying the starting URL.
