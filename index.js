@@ -25,7 +25,9 @@ const visitedUrls = new Set();
 const brokenLinks = [];
 const baseUrl = startingUrl;
 
-runLinkCheck(urlQueue);
+runLinkCheck(urlQueue).then(() => {
+  process.exit(); // completed successfully
+});
 
 async function runLinkCheck(queue) {
   let queuePosition = 0;
@@ -56,6 +58,10 @@ async function runLinkCheck(queue) {
 
     try {
       const response = await fetch(url);
+
+      if (response.status === 404) {
+        throw new Error("404 Page not found.");
+      }
 
       if (url.startsWith(baseUrl)) {
         const contentType = response.headers.get("content-type");
