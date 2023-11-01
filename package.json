@@ -1,0 +1,11 @@
+{
+  "name": "recursive-broken-link-checker",
+  "version": "1.0.0",
+  "description": "Given a base URL, recursively checks all links on that site.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Scott Meadows",
+  "license": "ISC"
+}
