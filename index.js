@@ -1,5 +1,7 @@
 "use strict";
 
+const fs = require("fs");
+
 /**
  * Performs a recursive link check starting from a base URL. The crawler will check all hrefs found in anchor tags.
  * If the href is on the same domain, the response will be added to a queue of sites to crawl, and the URL will be added to a set of visited URLs.
@@ -100,12 +102,18 @@ async function runLinkCheck(queue) {
   console.log("-----------------------------------");
   console.log();
 
-  console.log("Broken Links:");
-  console.log("URL");
+  let output = "Broken Links: \n";
   for (let brokenLink of brokenLinks) {
-    console.log(brokenLink.url);
-    console.log(`\tOn: ${brokenLink.foundOn}`);
+    output += `
+      \n
+      ${brokenLink.url}\n
+      Found on: ${brokenLink.foundOn}\n
+      \n
+    `;
   }
+
+  const saveLocation = saveOutput(output, 'broken-links.txt');
+  console.log(`Saved results to ${saveLocation}`);
 }
 
 function getHrefs(text, currentUrl) {
@@ -139,4 +147,22 @@ function getHrefs(text, currentUrl) {
     .filter((href) => !!href);
 
   return hrefs;
+}
+
+/**
+ * Save text output to a file in the cwd. Returns the path to the file.
+ * @param {string} text text to save
+ * @param {string} fileName name of output file (stored in cwd)
+ * @returns {string} path to saved file
+ */
+function saveOutput(text, fileName) {
+  const cwd = process.cwd();
+  const filePath = `${cwd}/${fileName}`;
+
+  fs.writeFileSync(filePath, text, function (err) {
+    console.error(err);
+    process.exit(1);
+  });
+
+  return filePath;
 }
