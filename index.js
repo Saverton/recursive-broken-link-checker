@@ -105,14 +105,14 @@ async function runLinkCheck(queue) {
   let output = "Broken Links: \n";
   for (let brokenLink of brokenLinks) {
     output += `
-      \n
-      ${brokenLink.url}\n
-      Found on: ${brokenLink.foundOn}\n
-      \n
+      
+      ${brokenLink.url}
+      Found on: ${brokenLink.foundOn}
+      
     `;
   }
 
-  const saveLocation = saveOutput(output, 'broken-links.txt');
+  const saveLocation = saveOutput(output, "broken-links.txt");
   console.log(`Saved results to ${saveLocation}`);
 }
 
