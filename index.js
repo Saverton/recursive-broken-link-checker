@@ -107,9 +107,7 @@ async function runLinkCheck(queue) {
     output += `
       
       ${brokenLink.url}
-      Found on: ${brokenLink.foundOn}
-      
-    `;
+      Found on: ${brokenLink.foundOn}`;
   }
 
   const saveLocation = saveOutput(output, "broken-links.txt");
