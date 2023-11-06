@@ -130,6 +130,9 @@ function getHrefs(text, currentUrl) {
       ) {
         // don't check same page links, mailto, or tel
         href = null;
+      } else if (href === "true" || href === "false") {
+        console.warn(`WARNING: found href ${href}, ignoring suspicious value.`);
+        href = null;
       } else if (href.startsWith("http")) {
         // nothing needed
       } else {
