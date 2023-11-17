@@ -99,6 +99,7 @@ async function runLinkCheck(queue) {
   console.log();
   console.log("-----------------------------------");
   console.log(`Completed link check in ${totalTimeSeconds} sec.`);
+  console.log(`Checked ${queuePosition} links.`);
   console.log("-----------------------------------");
   console.log();
 
